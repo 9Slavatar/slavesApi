@@ -11,7 +11,7 @@ headers = {
     "accept": "application/json, text/plain, */*",
     "accept-encoding": "gzip, deflate, br",
     "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
-    "authorization": None,
+    "authorization": "vk_access_token_settings=friends,status&vk_app_id=7794757&vk_are_notifications_enabled=1&vk_is_app_user=1&vk_is_favorite=0&vk_language=ru&vk_platform=desktop_web&vk_ref=other&vk_ts=1616773249&vk_user_id=411715303&sign=ESQiLIRQknWZEIUwzY3KByDb8ovT1mq-7aHGmyUqw88", 
     "origin": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com",
     "referer": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com/",
     "sec-ch-ua": '"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
@@ -32,7 +32,7 @@ class Slave:
             json = r.json()
         else:
             print(f"Oops! Error code {r.status_code}, {r.text}")
-            return None
+            return
 
         self.item_type = json["item_type"]
         self.id = json["id"]
@@ -76,14 +76,15 @@ import time
 if __name__ == "__main__":
     while True:
         slave = Slave(random.randint(1, 646516091))
-        if slave != None:
+        try:
             if slave.price > 30000 and slave.price < 150000 and not slave.fetter_to:
                 print(f"Finded slave {slave.id} cost {slave.price}")
                 slave.buy()
                 slave.setJob()
                 slave.buyFetter()
-                time.sleep(2)
-                
+                    
             else:
                 print(f"Slave {slave.id} cost {slave.price}; is fetter: {slave.fetter_to}, aborted")
+        except:
+            continue
         

@@ -11,7 +11,7 @@ headers = {
     "accept": "application/json, text/plain, */*",
     "accept-encoding": "gzip, deflate, br",
     "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
-    "authorization": None,
+    "authorization": "token here",
     "origin": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com",
     "referer": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com/",
     "sec-ch-ua": '"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
@@ -26,7 +26,9 @@ headers = {
 # Slave class & function
 class Slave:
     def __init__(self, id):
-        json = requests.get(user_url + str(id), headers=headers).json()
+        json = requests.get(user_url + str(id), headers=headers)
+        if json.status_code == 200:
+            json = json.json()
 
         self.item_type = json["item_type"]
         self.id = json["id"]
@@ -65,12 +67,12 @@ class Slave:
 
 
 # Example
-import time
 import random
+import time
 if __name__ == "__main__":
     while True:
         slave = Slave(random.randint(1, 646516091))
-        if slave.price > 30000 and slave.price < 1000000 and not slave.fetter_to:
+        if slave.price > 30000 and slave.price < 150000 and not slave.fetter_to:
             print(f"Finded slave {slave.id} cost {slave.price}")
             slave.buy()
             slave.setJob()

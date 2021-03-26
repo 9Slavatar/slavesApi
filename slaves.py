@@ -11,7 +11,7 @@ headers = {
     "accept": "application/json, text/plain, */*",
     "accept-encoding": "gzip, deflate, br",
     "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
-    "authorization": "vk_access_token_settings=friends,status&vk_app_id=7794757&vk_are_notifications_enabled=1&vk_is_app_user=1&vk_is_favorite=0&vk_language=ru&vk_platform=desktop_web&vk_ref=other&vk_ts=1616773249&vk_user_id=411715303&sign=ESQiLIRQknWZEIUwzY3KByDb8ovT1mq-7aHGmyUqw88", 
+    "authorization": None,
     "origin": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com",
     "referer": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com/",
     "sec-ch-ua": '"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',

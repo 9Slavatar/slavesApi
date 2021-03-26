@@ -11,7 +11,7 @@ headers = {
     "accept": "application/json, text/plain, */*",
     "accept-encoding": "gzip, deflate, br",
     "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
-    "authorization": None, 
+    "authorization": None,
     "origin": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com",
     "referer": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com/",
     "sec-ch-ua": '"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
@@ -23,12 +23,16 @@ headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"}
 
 
+
 # Slave class & function
 class Slave:
     def __init__(self, id):
         r = requests.get(user_url + str(id), headers=headers)
         if r.status_code == 200:
             json = r.json()
+        else:
+            print(f"Oops! Error code {r.status_code}, {r.text}")
+            return None
 
         self.item_type = json["item_type"]
         self.id = json["id"]
@@ -72,13 +76,14 @@ import time
 if __name__ == "__main__":
     while True:
         slave = Slave(random.randint(1, 646516091))
-        if slave.price > 30000 and slave.price < 150000 and not slave.fetter_to:
-            print(f"Finded slave {slave.id} cost {slave.price}")
-            slave.buy()
-            slave.setJob()
-            slave.buyFetter()
-            time.sleep(2)
-            
-        else:
-            print(f"Slave {slave.id} cost {slave.price}; is fetter: {slave.fetter_to}, aborted")
+        if slave != None:
+            if slave.price > 30000 and slave.price < 150000 and not slave.fetter_to:
+                print(f"Finded slave {slave.id} cost {slave.price}")
+                slave.buy()
+                slave.setJob()
+                slave.buyFetter()
+                time.sleep(2)
+                
+            else:
+                print(f"Slave {slave.id} cost {slave.price}; is fetter: {slave.fetter_to}, aborted")
         

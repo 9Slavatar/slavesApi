@@ -11,7 +11,7 @@ headers = {
     "accept": "application/json, text/plain, */*",
     "accept-encoding": "gzip, deflate, br",
     "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
-    "authorization": "token here",
+    "authorization": None, 
     "origin": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com",
     "referer": "https://prod-app7794757-6f6bf9481ca4.pages-ac.vk-apps.com/",
     "sec-ch-ua": '"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
@@ -26,9 +26,9 @@ headers = {
 # Slave class & function
 class Slave:
     def __init__(self, id):
-        json = requests.get(user_url + str(id), headers=headers)
-        if json.status_code == 200:
-            json = json.json()
+        r = requests.get(user_url + str(id), headers=headers)
+        if r.status_code == 200:
+            json = r.json()
 
         self.item_type = json["item_type"]
         self.id = json["id"]

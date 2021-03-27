@@ -113,7 +113,7 @@ if __name__ == "__main__":
                 print(f"Slave {slave.id} cost {slave.price}; is fetter: {slave.fetter_to}, aborted")
         """
         
-        """Устанавливает работы для всех рабов в вашем владении
+        """Устанавливает работы для всех рабов в вашем владении.
         dungeonmaster = Slave(твой айди) # Твой айди тут
         dungeonmaster_slave = dungeonmaster.getSlaves()
         for i in dungeonmaster_slave["slaves"]:

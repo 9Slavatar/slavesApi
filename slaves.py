@@ -114,7 +114,7 @@ if __name__ == "__main__":
         """
         
         """Устанавливает работы для всех рабов в вашем владении
-        dungeonmaster = Slave(411715303) # Твой айди тут
+        dungeonmaster = Slave(твой айди) # Твой айди тут
         dungeonmaster_slave = dungeonmaster.getSlaves()
         for i in dungeonmaster_slave["slaves"]:
             slave = Slave(json=i)
